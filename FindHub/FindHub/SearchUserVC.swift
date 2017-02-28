@@ -11,11 +11,13 @@ import UIKit
 
 
 
+
 class SearchUserVC: UIViewController, UITableViewDataSource {
     
+    
+
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var userAvatar: UIImageView!
-    @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var loginLabel: UILabel!
     @IBOutlet weak var followersLabel: UILabel!
     @IBOutlet weak var followingLabel: UILabel!
@@ -23,24 +25,33 @@ class SearchUserVC: UIViewController, UITableViewDataSource {
     var userLink = String()
     
     final var urlString = ""
-    final let urlReposString = "https://api.github.com/users/pedroberbel/repos"
+    var urlReposString = String()
 //    final var reposURL = [String]()
     var reposURL = [String]()
     var reposName = [String]()
-    var reposDescription = [String]()
+    var reposDescription = [String?]()
     
     var nameArray = [String]()
     var followersArray = [NSNumber]()
     var followingArray = [NSNumber]()
     var imageUrl = [String]()
-    var repository = [String]()
-    
+
+//    var repository = [String]()
+    var reposNameArray = [String]()
+    var languageArray = [String?]()
+    var lastUpdateArray = [String]()
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.tableView.dataSource = self
+        
         self.urlString = userLink
         self.downloadJsonWithURL()
+        print("REPOS STRING")
+        print(urlReposString)
+//        self.downloadJsonReposWithURL()
         //loading a rounded avatar and made it fixed with clipstoBounds
         userAvatar.clipsToBounds = true
 //        userAvatar.layer.cornerRadius = userAvatar.frame.size.width/2
@@ -83,9 +94,15 @@ class SearchUserVC: UIViewController, UITableViewDataSource {
                 if let image = jsonObj?.value(forKey: "avatar_url"){
                     self.imageUrl.append(image as! String)
                 }
+              
                 if let repos = jsonObj?.value(forKey: "repos_url"){
-                    self.repository.append(repos as! String)
+                    self.urlReposString.append(repos as! String)
+                    print ("dentro da funcao")
+                    print (self.urlReposString)
+                self.downloadJsonReposWithURL()
+
                 }
+                
                 
                 //GCD Library. updates in the main thread:
                 DispatchQueue.main.async(execute: {
@@ -98,51 +115,55 @@ class SearchUserVC: UIViewController, UITableViewDataSource {
                     self.userAvatar.image = UIImage(data: data as! Data)
                     
                 })
-                    print("FOI AQUI: ")
-//                 self.downloadJsonWithURLrepos()
+//                    print("FOI AQUI: ")
             }
         }.resume()
     }
 
 // get data from repos_url:
-    func downloadJsonWithURLrepos(){
-       
-        print("chamou RepoFunc")
-//        var urlRepos = self.repository as? String
-        let urli = NSURL(string: urlReposString)
-        print(urlReposString)
-        
-        URLSession.shared.dataTask(with: (urli as? URL)!) { (data, response, error) -> Void in
-            print ("DATA:")
-            print(data)
-
-            if let jsonObj = try? JSONSerialization.jsonObject(with: data!, options: .allowFragments) as? NSDictionary{
-                print("Entrou...")
-                if let nome = jsonObj!.value(forKey: "name"){
-                    self.reposName.append(nome as! String)
-                    print("entrou mais...")
-                }
+    func downloadJsonReposWithURL(){
+        let url = NSURL(string: urlReposString)
+        URLSession.shared.dataTask(with: (url as? URL)!) { (data, response, error) -> Void in
             
+            if let jsonObj = try? JSONSerialization.jsonObject(with: data!, options: .allowFragments) as? NSArray{
+//                    print("JSON OBJ")
+//                    print(jsonObj)
                 
+                if let reposArray = jsonObj! as? NSArray {
                 
-                
-//                if let nome = jsonObj?.value(forKey: "name") as? NSArray{
-//                    print("entrou mais...")
-//                    for name in nome {
-//                        if let reposDict = name as? NSDictionary{
-//                            if let lolo = reposDict.value(forKey: "name"){
-//                                self.reposName.append(lolo as! String)
-//                                print("Concluiu")
-//                            }
-//                        }
-//                    }
-//                    
-//                }
+                    for repository in reposArray {
+                        if let reposDict = repository as? NSDictionary{
+//                              print("DICIONARIO")
+//                              print(reposDict)
+                            // get the reporitory's name
+                            if let name = reposDict.value(forKey: "name"){
+                                self.reposNameArray.append(name as! String)
+                                print("NOMES")
+                                print(self.reposNameArray)
+                            }
+                            if let language = reposDict.value(forKey: "language"){
+                                self.languageArray.append(language as? String)
+////                                print("LNAGUAGE")
+////                                print(self.languageArray)
+                            }
+                            if let lastUpdate = reposDict.value(forKey: "updated_at"){
+                                self.lastUpdateArray.append(lastUpdate as! String)
+                            }
+                            if let descr = reposDict.value(forKey: "description"){
+                                self.reposDescription.append(descr as? String)
+                            }
+                            OperationQueue.main.addOperation {
+                                self.tableView.reloadData()
+                                print("ATUALIZOU A TABELA")
+                                
+                            }
+                        }
+                    }}
             
             }
-        
-        }.resume() //URLSession
-        } //dJWU
+        }.resume()
+    
+    }
     
     
     
@@ -151,18 +172,30 @@ class SearchUserVC: UIViewController, UITableViewDataSource {
 // Return the repositories from that user
 
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
-//      return 1
-        return reposName.count
+//      return 2
+        return reposNameArray.count
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! TableViewUserRepCell
-    
+        
+        cell.repsitoryLabel.text = self.reposNameArray[indexPath.row]
+        cell.descriptionLabel.text = self.reposDescription[indexPath.row]
+        cell.languageLabel.text = self.languageArray[indexPath.row]
+        cell.lastUpdateLabel.text = self.lastUpdateArray[indexPath.row]
+        
         return cell
     }
+    
     public func numberOfSections(in tableView: UITableView) -> Int {
-      
+        self.tableView.sectionIndexColor = Color.azul2()
+        
         return 1
+    }
+    public func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        
+        var text = "Repositórios: \(self.reposNameArray.count)"
+        return text
     }
 
     

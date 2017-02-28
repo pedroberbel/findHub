@@ -11,6 +11,8 @@ import UIKit
 class TableViewUserRepCell: UITableViewCell {
 
     
+    @IBOutlet weak var lastUpdateLabel: UILabel!
+    @IBOutlet weak var languageLabel: UILabel!
     @IBOutlet weak var repsitoryLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     
