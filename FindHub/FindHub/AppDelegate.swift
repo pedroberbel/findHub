@@ -13,9 +13,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+
+        //navigation item color:
+            UINavigationBar.appearance().tintColor = Color.branco()
+        //tabBar item color:
+            UITabBar.appearance().tintColor = Color.branco()
+  
         return true
     }
 
