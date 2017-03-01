@@ -642,8 +642,13 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
                         <color key="barTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <color key="selectedImageTintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="selectedImageTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </tabBar>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
+                            <color key="value" red="1" green="0.67427814762304139" blue="0.44167274599778039" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
                     <connections>
                         <segue destination="NAN-Te-z1L" kind="relationship" relationship="viewControllers" id="cub-vu-uRQ"/>
                         <segue destination="hwQ-Cn-auy" kind="relationship" relationship="viewControllers" id="Nz9-Pr-4WM"/>
@@ -861,7 +866,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="NAN-Te-z1L" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Buscar Usuários" image="GitHub-50" selectedImage="GitHub Filled-50" id="ON3-pg-AuY"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="VMO-oW-lsq">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="VMO-oW-lsq">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

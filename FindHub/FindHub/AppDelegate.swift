@@ -22,7 +22,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             UINavigationBar.appearance().tintColor = Color.branco()
         //tabBar item color:
             UITabBar.appearance().tintColor = Color.branco()
-  
+        //tabBar Text Color:
+        UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: Color.branco()], for: UIControlState.normal)
+                
         return true
     }
 
