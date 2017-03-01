@@ -79,6 +79,9 @@
 			isa = PBXGroup;
 			children = (
 				CD06F8861E5E03E80044CEEF /* AppDelegate.swift */,
+				CD2C01F71E648ED900ECAD66 /* Colors.h */,
+				CD2C01F91E648EEC00ECAD66 /* Colors.m */,
+				CD2C01F81E648EEC00ECAD66 /* FindHub-Bridging-Header.h */,
 				CD1F71821E60EE960068A4D6 /* ViewController */,
 				CD06F8A01E5E51A80044CEEF /* images */,
 				CD1F71831E6111E00068A4D6 /* Main.storyboard */,
@@ -86,9 +89,6 @@
 				CD06F88F1E5E03E80044CEEF /* LaunchScreen.storyboard */,
 				CD06F8921E5E03E80044CEEF /* Info.plist */,
 				CD1F71771E60996A0068A4D6 /* Models.swift */,
-				CD2C01F71E648ED900ECAD66 /* Colors.h */,
-				CD2C01F91E648EEC00ECAD66 /* Colors.m */,
-				CD2C01F81E648EEC00ECAD66 /* FindHub-Bridging-Header.h */,
 			);
 			path = FindHub;
 			sourceTree = "<group>";

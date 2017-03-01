@@ -10,11 +10,13 @@ import UIKit
 
 class TableViewFindUserCell: UITableViewCell {
 
+    //outlets inside of the tableView Cell with information of the searched users
     @IBOutlet weak var avatarUserImage: UIImageView!
     @IBOutlet weak var loginUserLabel: UILabel!
    
     override func awakeFromNib() {
         super.awakeFromNib()
+        //the avatar imageView with circular design, fixed by clipsToBounds when it load the picture.
         avatarUserImage.clipsToBounds = true
         avatarUserImage.layer.cornerRadius = avatarUserImage.frame.size.width/2
     }

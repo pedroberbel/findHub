@@ -26,7 +26,7 @@ class SearchUserVC: UIViewController, UITableViewDataSource {
     
     final var urlString = ""
     var urlReposString = String()
-//    final var reposURL = [String]()
+
     var reposURL = [String]()
     var reposName = [String]()
     var reposDescription = [String?]()
@@ -36,7 +36,6 @@ class SearchUserVC: UIViewController, UITableViewDataSource {
     var followingArray = [NSNumber]()
     var imageUrl = [String]()
 
-//    var repository = [String]()
     var reposNameArray = [String]()
     var languageArray = [String?]()
     var lastUpdateArray = [String]()

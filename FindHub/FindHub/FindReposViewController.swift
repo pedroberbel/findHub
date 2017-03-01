@@ -14,20 +14,24 @@ class FindReposViewController: UIViewController, UITableViewDataSource {
     @IBOutlet weak var searchBar: UISearchBar!
    
     var busca = String()
-    var nameArray = [String]()
-    var ownerArray = [String]()
-    var languageArray = [String?]()
     var URLString = String()
+    
+    var nameArray = [String]()
+    var languageArray = [String?]()
     var lastUpdateArray = [String]()
-    var teste1 = [String]()
+    var ownerArray = [String]()
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //if there is no data, tableview is hidden
         if self.nameArray.count == 0 {
             self.tableView.isHidden = true
         }
             self.tableView.dataSource = self
         
+          //setting the colors of navigationBar and TabBar.
         self.tableView.dataSource = self
         self.tableView.dataSource = self
         self.navigationController?.navigationBar.barTintColor = Color.azul2()
@@ -35,36 +39,29 @@ class FindReposViewController: UIViewController, UITableViewDataSource {
         self.tabBarController?.tabBar.barTintColor = Color.azul2()
     }
 
-    
+
     @IBAction func searchButton(_ sender: Any) {
-        
+     //condition to check if there is data in the table view, if return true, it will clean the data       
         if self.URLString != "" {
             self.URLString = ""
             self.ownerArray = []
             self.nameArray = []
             self.languageArray = []
+            self.lastUpdateArray = [] 
         }
-        
+            //if search bar is not empty, will do the JSON search.
         if !searchBar.text!.isEmpty {
+            //busca receiveis what user wrote in search bar, replace spaces by '+', than put it in URL Search 'URLString'
             self.busca = searchBar.text!.replacingOccurrences(of: " ", with: "+")
-            
-            print("busca repositorios acionada")
-            //https://api.github.com/search/repositories?q=teste
-            
-            let busca = "repositories" //quando botao de buscar usuario for acionado
-                        
-            self.URLString = "https://api.github.com/search/\(busca)?q=\(self.busca)"
-            
-            print(self.URLString)
+
+            self.URLString = "https://api.github.com/search/repositories?q=\(self.busca)"
+
             self.downloadJsonWithURL()
-        } else {
-            print("busca vazia")
-            searchBar.tintColor = UIColor.red
-            searchBar.barTintColor = UIColor.red
-            
         }
-    } // end button
+    }
     
+ /* The downloadJsonWithURL() function will access the JSON by it URL using JSONSerialization, ccreating arrays ans dictionaries wich one have some value for a key. In that case it is getting the repositories names and putting in a array "nameArray", same for the language (but that could return null), same for the lastUpdateArray and the owners login "ownerArray"
+ */
     func downloadJsonWithURL(){
         let url = NSURL(string: self.URLString)
         print (url)
@@ -79,54 +76,48 @@ class FindReposViewController: UIViewController, UITableViewDataSource {
                             if let name = reposDict.value(forKey: "name"){
                                 self.nameArray.append(name as! String)
                             }
+                            // get this language, could be null
                             if let language = reposDict.value(forKey: "language"){
                                 self.languageArray.append(language as? String)
                                 }
+                            
                             if let lastUpdate = reposDict.value(forKey: "updated_at"){
                                 self.lastUpdateArray.append(lastUpdate as! String)
                             }
-                                // acessa dados do dono do repositório:
+                                //access to the repository owner's data
                             if let owner = reposDict.value(forKey: "owner"){
-                                print("OWNER")
-                                print((owner as AnyObject).value(forKey: "login"))
                                 if let login = (owner as AnyObject).value(forKey: "login"){
                                     self.ownerArray.append(login as! String)
                                 }
                             }
-
-                            
-                            self.tableView.isHidden = false
-                    
+            // refresh tableView in the main thread, more fastly
                             OperationQueue.main.addOperation {
                                 self.tableView.reloadData()
-                                print("ATUALIZOU A TABELA")
                             }
                         }
                     }
                 }
             }
-            
+            //if there is no results in the search, the tableview will turn hidden
+            if self.nameArray.isEmpty{
+                self.tableView.isHidden = true
+            } else {
+                self.tableView.isHidden = false
+            }
         }).resume()
-        
-        print("OWNSERS LIST:")
-        print(self.ownerArray)
     }
     
-
-      
-        
     
-    
+    //the tableview's size are ramdomic according to the number of repositories founded
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
         return self.nameArray.count
-//        return 1
     }
+    //will load the data in each tableView Cell, according to the row
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellRepos") as! TableViewFindReposCell
         
-        cell.repositoryNameLabel.text = self.nameArray[indexPath.row] //funcionou p1
-        cell.ownerLoginLabel.text = self.ownerArray[indexPath.row] //funcionou p1
+        cell.repositoryNameLabel.text = self.nameArray[indexPath.row]
+        cell.ownerLoginLabel.text = self.ownerArray[indexPath.row]
         cell.languageLabel.text = self.languageArray[indexPath.row] 
         cell.lastUpdateLabel.text = self.lastUpdateArray[indexPath.row]
         

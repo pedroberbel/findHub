@@ -9,7 +9,8 @@
 import UIKit
 
 class TableViewFindReposCell: UITableViewCell {
-
+  
+    //outlets inside of the tableView Cell with information of the searched repositories
     @IBOutlet weak var ownerLoginLabel: UILabel!
     @IBOutlet weak var repositoryNameLabel: UILabel!
     @IBOutlet weak var languageLabel: UILabel!
