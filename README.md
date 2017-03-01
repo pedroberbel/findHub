@@ -5,9 +5,8 @@ an app that gets users and repositories from git hub
 
 pictures credits
 
-used name in project: areulookingfor/areulookingfor2
+used name in project: areulookingfor
 http://www.freepik.com/free-vector/head-looking-for-ideas_894797.htm
-
 Designed by Freepik
 
 

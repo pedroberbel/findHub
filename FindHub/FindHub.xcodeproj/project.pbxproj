@@ -14,7 +14,6 @@
 		CD06F8991E5E0A390044CEEF /* SearchUserVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD06F8981E5E0A390044CEEF /* SearchUserVC.swift */; };
 		CD06F89F1E5E3CC80044CEEF /* findHub.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CD06F89E1E5E3CC80044CEEF /* findHub.jpg */; };
 		CD06F8A21E5F48350044CEEF /* TableViewUserRepCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD06F8A11E5F48350044CEEF /* TableViewUserRepCell.swift */; };
-		CD1F71781E60996A0068A4D6 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1F71771E60996A0068A4D6 /* Models.swift */; };
 		CD1F717B1E60ADC30068A4D6 /* FindUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1F717A1E60ADC30068A4D6 /* FindUserViewController.swift */; };
 		CD1F717D1E60ADD50068A4D6 /* FindReposViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1F717C1E60ADD50068A4D6 /* FindReposViewController.swift */; };
 		CD1F717F1E60E5AB0068A4D6 /* TableViewFindUserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1F717E1E60E5AA0068A4D6 /* TableViewFindUserCell.swift */; };
@@ -22,7 +21,6 @@
 		CD1F71851E6111E00068A4D6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD1F71831E6111E00068A4D6 /* Main.storyboard */; };
 		CD2C01FA1E648EEC00ECAD66 /* Colors.m in Sources */ = {isa = PBXBuildFile; fileRef = CD2C01F91E648EEC00ECAD66 /* Colors.m */; };
 		CD2C01FC1E64BD0100ECAD66 /* areulookingfor.png in Resources */ = {isa = PBXBuildFile; fileRef = CD2C01FB1E64BD0100ECAD66 /* areulookingfor.png */; };
-		CD2C01FE1E64BDC600ECAD66 /* areulookingfor2.png in Resources */ = {isa = PBXBuildFile; fileRef = CD2C01FD1E64BDC600ECAD66 /* areulookingfor2.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,7 +33,6 @@
 		CD06F8981E5E0A390044CEEF /* SearchUserVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchUserVC.swift; sourceTree = "<group>"; };
 		CD06F89E1E5E3CC80044CEEF /* findHub.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = findHub.jpg; sourceTree = "<group>"; };
 		CD06F8A11E5F48350044CEEF /* TableViewUserRepCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewUserRepCell.swift; sourceTree = "<group>"; };
-		CD1F71771E60996A0068A4D6 /* Models.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		CD1F717A1E60ADC30068A4D6 /* FindUserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindUserViewController.swift; sourceTree = "<group>"; };
 		CD1F717C1E60ADD50068A4D6 /* FindReposViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindReposViewController.swift; sourceTree = "<group>"; };
 		CD1F717E1E60E5AA0068A4D6 /* TableViewFindUserCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewFindUserCell.swift; sourceTree = "<group>"; };
@@ -45,7 +42,6 @@
 		CD2C01F81E648EEC00ECAD66 /* FindHub-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FindHub-Bridging-Header.h"; sourceTree = "<group>"; };
 		CD2C01F91E648EEC00ECAD66 /* Colors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Colors.m; sourceTree = "<group>"; };
 		CD2C01FB1E64BD0100ECAD66 /* areulookingfor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = areulookingfor.png; sourceTree = "<group>"; };
-		CD2C01FD1E64BDC600ECAD66 /* areulookingfor2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = areulookingfor2.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,7 +84,6 @@
 				CD06F88D1E5E03E80044CEEF /* Assets.xcassets */,
 				CD06F88F1E5E03E80044CEEF /* LaunchScreen.storyboard */,
 				CD06F8921E5E03E80044CEEF /* Info.plist */,
-				CD1F71771E60996A0068A4D6 /* Models.swift */,
 			);
 			path = FindHub;
 			sourceTree = "<group>";
@@ -97,7 +92,6 @@
 			isa = PBXGroup;
 			children = (
 				CD2C01FB1E64BD0100ECAD66 /* areulookingfor.png */,
-				CD2C01FD1E64BDC600ECAD66 /* areulookingfor2.png */,
 				CD06F89E1E5E3CC80044CEEF /* findHub.jpg */,
 			);
 			name = images;
@@ -180,7 +174,6 @@
 				CD2C01FC1E64BD0100ECAD66 /* areulookingfor.png in Resources */,
 				CD06F8911E5E03E80044CEEF /* LaunchScreen.storyboard in Resources */,
 				CD06F88E1E5E03E80044CEEF /* Assets.xcassets in Resources */,
-				CD2C01FE1E64BDC600ECAD66 /* areulookingfor2.png in Resources */,
 				CD06F89F1E5E3CC80044CEEF /* findHub.jpg in Resources */,
 				CD1F71851E6111E00068A4D6 /* Main.storyboard in Resources */,
 			);
@@ -202,7 +195,6 @@
 				CD06F8A21E5F48350044CEEF /* TableViewUserRepCell.swift in Sources */,
 				CD06F8871E5E03E80044CEEF /* AppDelegate.swift in Sources */,
 				CD1F717B1E60ADC30068A4D6 /* FindUserViewController.swift in Sources */,
-				CD1F71781E60996A0068A4D6 /* Models.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
